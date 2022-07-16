@@ -1,0 +1,25 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+backend/node_modules
+frontend/node_modules
+
+# testing
+/coverage
+
+# production
+backend/build
+backend/dist
+frontend/dist
+frontend/build
+
+
+# misc
+.DS_Store
+backend/.env
+backend/.env.local
+backend/.env.development.local
+backend/.env.test.local
+backend/.env.production.local
+
+frontend/public
