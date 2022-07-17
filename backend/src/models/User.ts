@@ -1,39 +1,6 @@
-import { Schema, model, Types } from "mongoose";
+import { Schema, model } from "mongoose";
 
-interface UserDetails {
-  bio: string;
-  otherName: string;
-  job: string;
-  workplace: string;
-  highSchool: string;
-  college: string;
-  currentCity: string;
-  hometown: string;
-  relationship: string;
-  instagram: string;
-}
-
-interface IUser {
-  firstName: string;
-  lastName: string;
-  username: string;
-  email: string;
-  password: string;
-  picture: string;
-  cover: string;
-  gender: string;
-  bYear: number;
-  bMonth: number;
-  bDay: number;
-  verified: boolean;
-  friends: Types.Array<IUser>;
-  following: Types.Array<IUser>;
-  followers: Types.Array<IUser>;
-  requests: Types.Array<any>;
-  search: Types.Array<Types.ObjectId>;
-  details: UserDetails;
-  savedPosts: Types.Array<Types.ObjectId>;
-}
+import { IUser } from "../interfaces";
 
 // 2. Create a Schema corresponding to the document interface.
 const userSchema = new Schema<IUser>(
@@ -78,6 +45,8 @@ const userSchema = new Schema<IUser>(
       },
       instagram: String,
     },
+    followers: [],
+    following: [],
     savedPosts: [
       {
         post: {
