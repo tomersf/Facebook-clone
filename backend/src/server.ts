@@ -1,8 +1,9 @@
 import express from "express";
 import mongoose from "mongoose";
 import routes from "./routes";
-import cors, { CorsOptions } from "cors";
+import cors from "cors";
 import dotenv from "dotenv";
+import { extractENV, ENVS } from "./helpers/env";
 dotenv.config();
 
 const app = express();
@@ -12,11 +13,11 @@ app.use(cors());
 app.use("/", routes);
 
 mongoose
-  .connect(process.env.DATABASE_URL!)
+  .connect(extractENV(ENVS.DATABASE_URL))
   .then(() => console.log("database connected!"))
   .catch((err) => console.log("error connecting to mongodb", err));
 
-const PORT = process.env.PORT || 8000;
+const PORT = extractENV(ENVS.PORT) || 8000;
 app.listen(PORT, () => {
-  console.log("server is lestining...");
+  console.log("server is lestining on port", PORT);
 });

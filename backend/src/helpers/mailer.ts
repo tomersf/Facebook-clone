@@ -2,10 +2,11 @@ import nodemailer from "nodemailer";
 import { google } from "googleapis";
 import dotenv from "dotenv";
 dotenv.config();
+import { getAllENVS } from "./env";
 
 const { OAuth2 } = google.auth;
 
-const { EMAIL, MAILING_ID, MAILING_REFRESH, MAILING_SECRET } = process.env;
+const { EMAIL, MAILING_ID, MAILING_REFRESH, MAILING_SECRET } = getAllENVS();
 const oauth_link = "https://developers.google.com/oauthplayground";
 const auth = new OAuth2(MAILING_ID, MAILING_SECRET, oauth_link);
 
@@ -14,6 +15,7 @@ export const sendVerificationEmail = async (
   name: string,
   url: string
 ) => {
+  console.log(EMAIL, MAILING_ID, MAILING_REFRESH, MAILING_SECRET);
   auth.setCredentials({
     refresh_token: MAILING_REFRESH,
   });
