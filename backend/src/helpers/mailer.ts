@@ -15,7 +15,6 @@ export const sendVerificationEmail = async (
   name: string,
   url: string
 ) => {
-  console.log(EMAIL, MAILING_ID, MAILING_REFRESH, MAILING_SECRET);
   auth.setCredentials({
     refresh_token: MAILING_REFRESH,
   });
